@@ -2,7 +2,6 @@ import { StyleSheet, Text, TextProps } from 'react-native'
 import React from 'react'
 
 type LabelProps = {
-
 }
 
 const Label = (props: LabelProps & TextProps) => {

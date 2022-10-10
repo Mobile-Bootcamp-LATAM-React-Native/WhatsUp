@@ -1,18 +1,57 @@
-import { StyleSheet, TouchableHighlight, TouchableHighlightProps, Text } from 'react-native'
-import React from 'react'
+import { StyleSheet, TouchableHighlight, TouchableHighlightProps, Text } from 'react-native';
+import { useContext } from 'react';
+import { ColorContext } from '../shared/ColorContext';
+
+type ButtonType = 'primary' | 'secundary';
 
 type ButtonProps = {
   text: string;
+  type?: ButtonType;
 }
 
-const Button = (props: ButtonProps & TouchableHighlightProps) => {
+const Button = ({
+  text,
+  type = 'primary',
+  onPress,
+}: ButtonProps & TouchableHighlightProps) => {
+  const styles = useStyles(type);
+
   return (
-    <TouchableHighlight {...props}>
-      <Text>{props.text}</Text>
+    <TouchableHighlight style={styles.button} onPress={onPress}>
+      <Text style={styles.text}>
+        {text}
+      </Text>
     </TouchableHighlight>
   )
 }
 
 export default Button
 
-const styles = StyleSheet.create({})
+const useStyles = (type: ButtonType) => {
+  const {
+    backgroundColor,
+    primaryColor,
+    primaryButtonText,
+    secundaryButtonText,
+    largePadding,
+    border,
+    margin,
+  } = useContext(ColorContext);
+
+  return StyleSheet.create({
+    button: {
+      borderColor: primaryColor,
+      borderWidth: 2,
+      backgroundColor: type == 'primary' ? primaryColor : backgroundColor,
+      padding: largePadding,
+      borderRadius: border,
+      alignItems: 'center',
+      margin: margin,
+    },
+    text: {
+      color: type == 'primary' ? primaryButtonText : secundaryButtonText,
+      fontWeight: '600',
+      fontSize: 18,
+    }
+  });
+}

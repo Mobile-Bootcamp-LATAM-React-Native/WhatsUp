@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 
-// TODO: Load async fonts
+// TODO in future: Load async fonts
 const Icon = () => {
   return (
     <View>

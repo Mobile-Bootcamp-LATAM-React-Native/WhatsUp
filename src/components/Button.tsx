@@ -13,11 +13,12 @@ const Button = ({
   text,
   type = 'primary',
   onPress,
+  style,
 }: ButtonProps & TouchableHighlightProps) => {
   const styles = useStyles(type);
 
   return (
-    <TouchableHighlight style={styles.button} onPress={onPress}>
+    <TouchableHighlight style={[styles.button, style]} onPress={onPress}>
       <Text style={styles.text}>
         {text}
       </Text>

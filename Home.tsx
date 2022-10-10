@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <ColorContext value={theme}>
       <SafeAreaView style={[styles.main, { backgroundColor: theme.backgroundColor }]}>
-        <Button text="Cancel" type="secundary" />
+        <Button text="Cancel" type="secundary" style={{ width: 120 }} />
         <Button text="Yes"/>
       </SafeAreaView>
     </ColorContext>

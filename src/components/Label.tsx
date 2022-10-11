@@ -6,20 +6,19 @@ import { ColorContext } from '../shared/ColorContext';
 type LabelType = 'h0' | 'h1' | 'h2' | 'h3' | 'h4' | 'p1' | 'p2' 
 
 type LabelProps = {
-  text: string;
   type?: LabelType;
 }
 
 const Label = ({
-  text,
   type = 'p1',
-  style
+  style,
+  children
 }: LabelProps & TextProps) => {
   const styles = useStyles();
 
   return (
     <Text style= {[styles[type], style]} >
-      {text}
+      {children}
     </Text>
   )
 }

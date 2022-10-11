@@ -13,7 +13,7 @@ const Home = () => {
       <SafeAreaView style={[styles.main, { backgroundColor: theme.backgroundColor }]}>
         <Button text="Cancel" type="secundary" style={{ width: 120 }} />
         <Button text="Yes"/>
-        <Label text="New label" type='h1'/>
+        <Label type='h1'>NewLabel</Label>
       </SafeAreaView>
     </ColorContext>
   )

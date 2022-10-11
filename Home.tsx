@@ -2,8 +2,8 @@ import { SafeAreaView, StyleSheet, Text, useColorScheme } from 'react-native'
 import React from 'react'
 
 import { useMyTheme } from './src/hooks'
-import Button from './src/components/Button';
-import ColorContext from './src/shared/ColorContext';
+import { Button } from '@/components';
+import { ColorContextProvider as ColorContext } from '@/shared';
 
 const Home = () => {
   const theme = useMyTheme();

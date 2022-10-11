@@ -1,6 +1,6 @@
 import { StyleSheet, TouchableHighlight, TouchableHighlightProps, Text } from 'react-native';
 import { useContext } from 'react';
-import { ColorContext } from '../shared/ColorContext';
+import { ColorContext } from '@/shared';
 
 type ButtonType = 'primary' | 'secundary';
 

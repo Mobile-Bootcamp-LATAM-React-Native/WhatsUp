@@ -5,6 +5,7 @@ export type ThemeType = {
   secundaryColorText: string;
   primaryButtonText: string;
   secundaryButtonText: string;
+  loadingColor: string;
 
   smallPadding: number,
   largePadding: number,
@@ -35,6 +36,7 @@ export const lightTheme: ThemeType = {
   secundaryColorText: theme.primaryColor,
   primaryButtonText: '#fff',
   secundaryButtonText: theme.primaryColor,
+  loadingColor: '#fff'
 }
 
 export const darkTheme: ThemeType = {
@@ -44,4 +46,5 @@ export const darkTheme: ThemeType = {
   secundaryColorText: theme.primaryColor,
   primaryButtonText: '#fff',
   secundaryButtonText: theme.primaryColor,
+  loadingColor: "#161B20"
 }

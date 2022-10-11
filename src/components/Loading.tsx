@@ -1,15 +1,55 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { ActivityIndicator, ActivityIndicatorProps, StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { useContext } from 'react';
+import { ColorContext } from '../shared/ColorContext';
 
-// TODO
-const Loading = () => {
+type LoadingType = 'large' | 'small';
+
+type LoadingProps = {
+  type?: LoadingType;
+}
+
+const Loading = ({
+  type = 'large',
+  style,
+}: LoadingProps & ActivityIndicatorProps) => {
+  const styles = useStyles(type);
+
   return (
-    <View>
-      <Text>Loading</Text>
+    <View style={styles.container}>
+      <View style={styles.loadingContainer} />
+      <ActivityIndicator size="large" style={[styles.loading, style]} />
     </View>
   )
 }
 
 export default Loading
 
-const styles = StyleSheet.create({})
+const useStyles = (type: LoadingType) => {
+  const {
+    backgroundColor,
+    loadingColor,
+  } = useContext(ColorContext);
+
+  return StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: "center",
+      alignItems: 'center'
+    },
+    loadingContainer: {
+      width: '100%',
+      height: '100%',
+      backgroundColor: backgroundColor,
+      opacity: 0.6,
+      position: 'absolute',
+    },
+    loading: {
+      width: 100,
+      height: 100,
+      backgroundColor: loadingColor,
+      borderRadius: 20
+    }
+  })
+}
+

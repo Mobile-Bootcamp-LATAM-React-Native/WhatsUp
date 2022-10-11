@@ -18,6 +18,7 @@ export type ThemeType = {
   largeMargin: number;
   textInputStyle: TextInputStyles.TextInputType;
   imageBackgroundColor: string;
+  loadingColor: string;
 }
 
 const theme = {
@@ -41,10 +42,11 @@ export const lightTheme: ThemeType = {
   secundaryColorText: theme.primaryColor,
   primaryButtonText: '#fff',
   secundaryButtonText: theme.primaryColor,
-  textColorMessage:'#6b7179',
-  senderColorMessage : '#eafff3',
-  receiverColorMessage : '#f4f6f9',
+  textColorMessage: '#6b7179',
+  senderColorMessage: '#eafff3',
+  receiverColorMessage: '#f4f6f9',
   textInputStyle: TextInputStyles.lightMode,
+  loadingColor: '#fff'
 };
 
 export const darkTheme: ThemeType = {
@@ -54,8 +56,9 @@ export const darkTheme: ThemeType = {
   secundaryColorText: theme.primaryColor,
   primaryButtonText: '#fff',
   secundaryButtonText: theme.primaryColor,
-  textColorMessage:'#ddddde',
-  senderColorMessage : '#10c17d',
-  receiverColorMessage : '#161b20',
+  textColorMessage: '#ddddde',
+  senderColorMessage: '#10c17d',
+  receiverColorMessage: '#161b20',
   textInputStyle: TextInputStyles.darkMode,
+  loadingColor: "#161B20"
 };

@@ -1,16 +1,16 @@
 import { StyleSheet, Text, View } from 'react-native'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { ColorContext } from '../shared/ColorContext';
 //import { Checkbox } from 'native-base';
 //import Checkbox from './src/components/Checkbox';
 
 type CheckboxProps = {
   text: string;
-  value: string;
 }
 
-const CheckBox  = ({text, value}: CheckboxProps) => {
+const CheckBox = ({text}: CheckboxProps) => {
   const styles = useStyles();
+  const [value, setValue] = useState(true);
   return (
     <View>
       <Checkbox value={value} style={styles.checkbox}>{text}</Checkbox>
@@ -24,14 +24,13 @@ const useStyles = () => {
   const {
     primaryColor,
     primaryButtonText,
-    margin
   } = useContext(ColorContext)
 
   return StyleSheet.create({
     checkbox: {
       backgroundColor: primaryColor,
       color: primaryButtonText,
-      margin: margin,
+      margin: 5,
     }
   });
 }

@@ -10,7 +10,7 @@ const Home = () => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-    }, 3000);
+    }, 2000);
   };
 
   return (
@@ -18,9 +18,8 @@ const Home = () => {
       <SafeAreaView style={[styles.main, { backgroundColor: theme.backgroundColor }]}>
         {loading ? (
           <>
-            <Button text="Cancel" type="secundary" style={{ width: 120 }} />
+            <Button text="Cancel" type="secundary" style={{ width: 120 }} onPress={startLoading} />
             <Button text="Yes" />
-            <Label type="h1">NewLabel</Label>
             <Loading />
           </>
         ) : (

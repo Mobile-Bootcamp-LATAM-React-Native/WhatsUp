@@ -1,5 +1,3 @@
-import { Button, Label, Loading } from '@/components';
-import { ColorContextProvider as ColorContext } from '@/shared';
 import { ActivityIndicator, SafeAreaView, StyleSheet, Text, useColorScheme } from 'react-native'
 import React, { useState } from 'react'
 import { useMyTheme } from './src/hooks'
@@ -27,7 +25,7 @@ const Home = () => {
           </>
         ) : (
           <>
-            <Button text="Cancel" type="secundary" style={{ width: 120 }} />
+            <Button text="Cancel" type="secundary" style={{ width: 120 }} onPress={startLoading} />
             <Button text="Yes" />
             <Label type="h1">NewLabel</Label>
           </>

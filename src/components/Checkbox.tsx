@@ -1,40 +1,52 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, TouchableWithoutFeedback, TouchableWithoutFeedbackProps } from 'react-native'
 import { useContext, useState } from 'react'
 import { ColorContext } from '../shared/ColorContext';
-//import { Checkbox } from 'native-base';
-//import Checkbox from './src/components/Checkbox';
 
 type CheckboxProps = {
   text: string;
 }
 
-const CheckBox = ({text}: CheckboxProps) => {
-  const styles = useStyles();
-  const [value, setValue] = useState(true);
+const Checkbox = ({text, onPress}: CheckboxProps & TouchableWithoutFeedbackProps) => {
+  const [checked, setChecked] = useState(false);
+  const styles = useStyles(checked);
+
   return (
-    <View>
-      <Checkbox value={value} style={styles.checkbox}>{text}</Checkbox>
-    </View>
+    <TouchableWithoutFeedback onPress={onPress}>
+      <View style={styles.container}>
+        <View style={styles.checkbox}></View>
+        <Text style={styles.text}>{text}</Text>
+      </View>
+    </TouchableWithoutFeedback>
   )
 }
 
-export default CheckBox
+export default Checkbox
 
-const useStyles = () => {
+const useStyles = (checked: boolean) => {
   const {
     primaryColor,
-    primaryButtonText,
+    primaryColorText,
+    margin,
+    backgroundColor
   } = useContext(ColorContext)
 
   return StyleSheet.create({
+    container: {
+      flexDirection: 'row',
+      margin: margin
+    },
     checkbox: {
-      backgroundColor: primaryColor,
-      color: primaryButtonText,
-      margin: 5,
+      height: 20,
+      width: 20,
+      borderColor: primaryColor,
+      backgroundColor: checked == true ? primaryColor : backgroundColor,
+      borderWidth: 1,
+      borderRadius: 5,
+      marginHorizontal: 5
+    },
+    text: {
+      color: primaryColorText,
+      marginHorizontal: 5
     }
   });
 }
-
-/*
-npm install react-native-base --save
-npm install native-base react-native-svg@12.1.1 react-native-safe-area-context@3.3.2*/

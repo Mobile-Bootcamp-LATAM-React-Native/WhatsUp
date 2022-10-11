@@ -2,7 +2,7 @@ import {SafeAreaView, StyleSheet} from 'react-native';
 import React from 'react';
 
 import {useMyTheme} from '../hooks';
-import Input from '../components/Input';
+import {Input} from '@/components';
 import ColorContext from '../shared/ColorContext';
 
 const SignIn = () => {

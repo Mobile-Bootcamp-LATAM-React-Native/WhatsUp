@@ -2,8 +2,8 @@ import { ImageBackground, ImageBackgroundProps, StyleSheet } from 'react-native'
 import React, { useState, useContext, useEffect } from 'react';
 
 import { ColorContext } from '../shared/ColorContext';
-import DefaultAvatar from '../assets/default_avatar.png';
 
+const DefaultAvatar = require('../assets/default_avatar.png')
 
 type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' |'2xl';
 

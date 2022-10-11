@@ -14,7 +14,7 @@ const Loading = ({
   style,
   ...rest
 }: LoadingProps & ActivityIndicatorProps) => {
-  const styles = useStyles(type);
+  const styles = useStyles();
 
   return (
     <View style={styles.container}>
@@ -26,10 +26,10 @@ const Loading = ({
 
 export default Loading
 
-const useStyles = (type: LoadingType) => {
+const useStyles = () => {
   const {
-    backgroundColor,
     loadingColor,
+    loadingBackground,
     primaryColor
   } = useContext(ColorContext);
 
@@ -42,7 +42,7 @@ const useStyles = (type: LoadingType) => {
     loadingContainer: {
       width: '100%',
       height: '100%',
-      backgroundColor: backgroundColor,
+      backgroundColor: loadingBackground,
       opacity: 0.6,
       position: 'absolute',
     },

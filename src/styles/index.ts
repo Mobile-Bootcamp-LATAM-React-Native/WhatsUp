@@ -19,6 +19,7 @@ export type ThemeType = {
   textInputStyle: TextInputStyles.TextInputType;
   imageBackgroundColor: string;
   loadingColor: string;
+  loadingBackground: string;
 }
 
 const theme = {
@@ -46,7 +47,8 @@ export const lightTheme: ThemeType = {
   senderColorMessage: '#eafff3',
   receiverColorMessage: '#f4f6f9',
   textInputStyle: TextInputStyles.lightMode,
-  loadingColor: '#fff'
+  loadingColor: '#fff',
+  loadingBackground: "#161B20"
 };
 
 export const darkTheme: ThemeType = {
@@ -60,5 +62,6 @@ export const darkTheme: ThemeType = {
   senderColorMessage: '#10c17d',
   receiverColorMessage: '#161b20',
   textInputStyle: TextInputStyles.darkMode,
-  loadingColor: "#161B20"
+  loadingColor: "#161B20",
+  loadingBackground: "#161B20"
 };

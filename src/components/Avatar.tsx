@@ -1,20 +1,42 @@
-import { Image, ImageBackground, ImageBackgroundProps, StyleSheet, Text, View } from 'react-native'
-import React, { useState } from 'react'
+import { ImageBackground, ImageBackgroundProps, StyleSheet } from 'react-native'
+import React, { useState, useContext, useEffect } from 'react'
+
+import { ColorContext } from '../shared/ColorContext';
+import DefaultAvatar from '../assets/default_avatar.png';
+
 
 type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' |'2xl'
 
 type AvatarProps = {
-  src: string,
+  url: string,
   size?: AvatarSize
 }
 
 const Avatar = ({
-  src,
+  url,
   size = 'md'
 }: AvatarProps & ImageBackgroundProps) => {
   const styles = getStyles(size)
   const [error, setError] = useState(false)
-  return (<ImageBackground style = {styles.container} source = {error? require("../assets/default_avatar.png") : {uri: src} } onError={() => setError(true)}/>)  
+  const [source, setSource] = useState(DefaultAvatar);
+
+  useEffect(() => {
+    // TODO: Define error image
+    if (error) {
+        setSource(DefaultAvatar);
+    }}, [error]);
+ 
+  useEffect(() => {
+     setSource({uri: url})
+  }, [url])
+ 
+
+  return (
+    <ImageBackground
+      style = {styles.container}
+      source = {source} 
+      onError={() => setError(true)}/>
+  )  
 }
 
 export default Avatar
@@ -39,13 +61,17 @@ const resolveSize = (size: AvatarSize) => {
 }
 
 const getStyles = (size: AvatarSize) => {
+  const {
+    smallMargin,
+    imageBackgroundColor
+  } = useContext(ColorContext);
   const resolvedSize = resolveSize(size)
   return StyleSheet.create({
     container: {
-      margin: 5,
+      margin: smallMargin,
       overflow: 'hidden',
       borderRadius: resolvedSize,
-      backgroundColor: 'gray',
+      backgroundColor: imageBackgroundColor,
       width: resolvedSize,
       height: resolvedSize
     }

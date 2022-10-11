@@ -1,27 +1,31 @@
 import {SafeAreaView, StyleSheet} from 'react-native';
 import React from 'react';
 
-import {useMyTheme} from './src/hooks';
-import {Button} from '@/components';
-import {ColorContextProvider as ColorContext} from '@/shared';
+import {useMyTheme} from '../hooks';
+import Input from '../components/Input';
+import ColorContext from '../shared/ColorContext';
 
-const Home = () => {
+const SignIn = () => {
   const theme = useMyTheme();
-
   return (
     <ColorContext value={theme}>
       <SafeAreaView
         style={[styles.main, {backgroundColor: theme.backgroundColor}]}>
-        <Button text="Cancel" type="secundary" style={{width: 120}} />
-        <Button text="Yes" />
+        <Input
+          isInvalid={true}
+          placeholder={'Phone Number'}
+          style={styles.customInput}
+        />
+        <Input />
       </SafeAreaView>
     </ColorContext>
   );
 };
 
-export default Home;
+export default SignIn;
 
 const styles = StyleSheet.create({
+  customInput: {},
   main: {
     flex: 1,
   },

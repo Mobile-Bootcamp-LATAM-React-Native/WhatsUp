@@ -1,3 +1,4 @@
+import * as TextInputStyles from './textInput';
 export type ThemeType = {
   primaryColor: string;
   backgroundColor: string;
@@ -5,15 +6,16 @@ export type ThemeType = {
   secundaryColorText: string;
   primaryButtonText: string;
   secundaryButtonText: string;
+  smallPadding: number;
+  largePadding: number;
+  padding: number;
+  border: number;
+  margin: number;
+  smallMargin: number;
+  largeMargin: number;
 
-  smallPadding: number,
-  largePadding: number,
-  padding: number,
-  border: number,
-  margin: number,
-  smallMargin: number,
-  largeMargin: number,
-}
+  textInputStyle: TextInputStyles.TextInputType;
+};
 
 const theme = {
   primaryColor: '#10C17D',
@@ -24,7 +26,7 @@ const theme = {
   margin: 8,
   smallMargin: 4,
   largeMargin: 12,
-}
+};
 
 const lightBackgroundColor = '#ffffff';
 
@@ -35,7 +37,8 @@ export const lightTheme: ThemeType = {
   secundaryColorText: theme.primaryColor,
   primaryButtonText: '#fff',
   secundaryButtonText: theme.primaryColor,
-}
+  textInputStyle: TextInputStyles.lightMode,
+};
 
 export const darkTheme: ThemeType = {
   ...theme,
@@ -44,4 +47,5 @@ export const darkTheme: ThemeType = {
   secundaryColorText: theme.primaryColor,
   primaryButtonText: '#fff',
   secundaryButtonText: theme.primaryColor,
-}
+  textInputStyle: TextInputStyles.darkMode,
+};

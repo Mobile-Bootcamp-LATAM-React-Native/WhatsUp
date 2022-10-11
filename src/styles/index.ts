@@ -1,4 +1,4 @@
-import * as TextInputStyles from './textInput';
+import * as TextInputStyles from '../components/Input/Input.style';
 export type ThemeType = {
   primaryColor: string;
   backgroundColor: string;

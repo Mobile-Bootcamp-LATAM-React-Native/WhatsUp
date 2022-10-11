@@ -1,7 +1,7 @@
 import {StyleSheet, TextInput, TextInputProps} from 'react-native';
 import React, {useContext, useState} from 'react';
 
-import {ColorContext} from '../shared/ColorContext';
+import {ColorContext} from '../../shared/ColorContext';
 
 type InputProps = {
   isInvalid?: boolean;
@@ -9,22 +9,18 @@ type InputProps = {
 
 const Input = ({isInvalid, style: customStyles, ...rest}: InputProps) => {
   const themeStyles = useStyles();
-  let styles: any[] = [themeStyles.input];
+  const inputStyles: any[] = [themeStyles.input];
 
   const [isActive, setIsActive] = useState(false);
   const [textInputContent, setTextInputContent] = useState('');
 
-  if (isActive) {
-    styles.push(themeStyles.active);
-  }
+  inputStyles.push(customStyles);
 
-  if (isInvalid) {
-    styles.push(themeStyles.invalidInput);
-  }
-
-  if (textInputContent.length !== 0) {
-    styles.push(themeStyles.textStyle);
-  }
+  inputStyles.push(
+    isActive && themeStyles.active,
+    isInvalid && themeStyles.invalidInput,
+    textInputContent.length !== 0 && themeStyles.textStyle,
+  );
 
   const onFocus = () => {
     setIsActive(true);
@@ -41,7 +37,7 @@ const Input = ({isInvalid, style: customStyles, ...rest}: InputProps) => {
   return (
     <TextInput
       {...rest}
-      style={[customStyles, styles]}
+      style={StyleSheet.flatten(inputStyles)}
       onFocus={onFocus}
       onBlur={onBlur}
       onChangeText={onChange}

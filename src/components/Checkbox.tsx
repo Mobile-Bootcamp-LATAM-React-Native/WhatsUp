@@ -6,9 +6,13 @@ type CheckboxProps = {
   text: string;
 }
 
-const Checkbox = ({text, onPress}: CheckboxProps & TouchableWithoutFeedbackProps) => {
+const Checkbox = ({text}: CheckboxProps & TouchableWithoutFeedbackProps) => {
   const [checked, setChecked] = useState(false);
   const styles = useStyles(checked);
+
+  const onPress = () => {
+    checked == true ? setChecked(false) : setChecked(true)
+  };
 
   return (
     <TouchableWithoutFeedback onPress={onPress}>

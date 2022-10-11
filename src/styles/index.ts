@@ -5,6 +5,10 @@ export type ThemeType = {
   secundaryColorText: string;
   primaryButtonText: string;
   secundaryButtonText: string;
+  senderColorMessage: string;
+  receiverColorMessage: string;
+  textColorMessage: string;
+
 
   smallPadding: number,
   largePadding: number,
@@ -23,7 +27,7 @@ const theme = {
   border: 50,
   margin: 8,
   smallMargin: 4,
-  largeMargin: 12,
+  largeMargin: 12
 }
 
 const lightBackgroundColor = '#ffffff';
@@ -35,6 +39,9 @@ export const lightTheme: ThemeType = {
   secundaryColorText: theme.primaryColor,
   primaryButtonText: '#fff',
   secundaryButtonText: theme.primaryColor,
+  textColorMessage:'#6b7179',
+  senderColorMessage : '#eafff3',
+  receiverColorMessage : '#f4f6f9'
 }
 
 export const darkTheme: ThemeType = {
@@ -44,4 +51,7 @@ export const darkTheme: ThemeType = {
   secundaryColorText: theme.primaryColor,
   primaryButtonText: '#fff',
   secundaryButtonText: theme.primaryColor,
+  textColorMessage:'#ddddde',
+  senderColorMessage : '#10c17d',
+  receiverColorMessage : '#161b20'
 }

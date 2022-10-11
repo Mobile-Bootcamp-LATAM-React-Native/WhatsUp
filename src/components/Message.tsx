@@ -1,22 +1,19 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { useContext } from 'react';
+import React, {useContext} from 'react';
 import { ColorContext } from '../shared/ColorContext';
-
 
 type MessageType = 'sender' | 'receiver';
 
 type MessageProps = {
   message: string;
   time: String;
-  type?: MessageType;
+  type: MessageType;
 }
 
-// TODO
 const Message = ({
   message,
   time,
-  type = 'receiver'
+  type,
 }: MessageProps) =>{
   const styles = useStyles(type);
 
@@ -45,22 +42,23 @@ const useStyles = (type: MessageType) => {
       marginTop: 10,
       padding: 10, 
       borderRadius: 5, 
-      paddingBottom: 10,
+      paddingBottom: 0,
       backgroundColor: type == 'sender' ? senderColorMessage : receiverColorMessage,
     },
     text: {
       color: textColorMessage,
       fontSize: 18,
       textAlign:'justify',
-      marginRight:51
+      marginRight:52
     },
     textTime: {
       color: textColorMessage,
       fontWeight: '600',
       fontSize: 12,
-      alignSelf: 'flex-end',
-      marginBottom: -5,
-      marginTop: -14
+      position:'relative',
+      bottom:15,
+      right:0,
+      alignSelf: 'flex-end'
     }
   });
 }

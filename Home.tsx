@@ -1,20 +1,37 @@
-import {SafeAreaView, StyleSheet} from 'react-native';
-import React from 'react';
-
-import {useMyTheme} from './src/hooks';
-import {Button, Label} from '@/components';
-import {ColorContextProvider as ColorContext} from '@/shared';
+import { Button, Label, Loading } from '@/components';
+import { ColorContextProvider as ColorContext } from '@/shared';
+import { ActivityIndicator, SafeAreaView, StyleSheet, Text, useColorScheme } from 'react-native'
+import React, { useState } from 'react'
+import { useMyTheme } from './src/hooks'
 
 const Home = () => {
+  const [loading, setLoading] = useState(false);
   const theme = useMyTheme();
+
+  const startLoading = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+  };
 
   return (
     <ColorContext value={theme}>
-      <SafeAreaView
-        style={[styles.main, {backgroundColor: theme.backgroundColor}]}>
-        <Button text="Cancel" type="secundary" style={{width: 120}} />
-        <Button text="Yes" />
-        <Label type="h1">NewLabel</Label>
+      <SafeAreaView style={[styles.main, { backgroundColor: theme.backgroundColor }]}>
+        {loading ? (
+          <>
+            <Button text="Cancel" type="secundary" style={{ width: 120 }} />
+            <Button text="Yes" />
+            <Label type="h1">NewLabel</Label>
+            <Loading />
+          </>
+        ) : (
+          <>
+            <Button text="Cancel" type="secundary" style={{ width: 120 }} />
+            <Button text="Yes" />
+            <Label type="h1">NewLabel</Label>
+          </>
+        )}
       </SafeAreaView>
     </ColorContext>
   );

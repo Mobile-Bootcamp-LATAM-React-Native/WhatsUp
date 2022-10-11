@@ -18,7 +18,7 @@ const Loading = ({
   return (
     <View style={styles.container}>
       <View style={styles.loadingContainer} />
-      <ActivityIndicator size="large" style={[styles.loading, style]} />
+      <ActivityIndicator size={type} color={styles.loading.color} style={[styles.loading, style]} />
     </View>
   )
 }
@@ -29,6 +29,7 @@ const useStyles = (type: LoadingType) => {
   const {
     backgroundColor,
     loadingColor,
+    primaryColor
   } = useContext(ColorContext);
 
   return StyleSheet.create({
@@ -48,8 +49,9 @@ const useStyles = (type: LoadingType) => {
       width: 100,
       height: 100,
       backgroundColor: loadingColor,
-      borderRadius: 20
-    }
+      borderRadius: 20,
+      color: primaryColor
+    },
   })
 }
 

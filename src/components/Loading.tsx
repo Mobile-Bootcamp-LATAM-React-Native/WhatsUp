@@ -12,13 +12,14 @@ type LoadingProps = {
 const Loading = ({
   type = 'large',
   style,
+  ...rest
 }: LoadingProps & ActivityIndicatorProps) => {
   const styles = useStyles(type);
 
   return (
     <View style={styles.container}>
       <View style={styles.loadingContainer} />
-      <ActivityIndicator size={type} color={styles.loading.color} style={[styles.loading, style]} />
+      <ActivityIndicator size={type} color={styles.loading.color} style={[styles.loading, style]} {...rest} />
     </View>
   )
 }
@@ -49,7 +50,7 @@ const useStyles = (type: LoadingType) => {
       width: 100,
       height: 100,
       backgroundColor: loadingColor,
-      borderRadius: 20,
+      borderRadius: 15,
       color: primaryColor
     },
   })

@@ -2,7 +2,7 @@ import { SafeAreaView, StyleSheet, Text, useColorScheme } from 'react-native'
 import React from 'react'
 
 import { useMyTheme } from './src/hooks'
-import { Button } from '@/components';
+import { Button, Label } from '@/components';
 import { ColorContextProvider as ColorContext } from '@/shared';
 
 const Home = () => {
@@ -13,6 +13,7 @@ const Home = () => {
       <SafeAreaView style={[styles.main, { backgroundColor: theme.backgroundColor }]}>
         <Button text="Cancel" type="secundary" style={{ width: 120 }} />
         <Button text="Yes"/>
+        <Label type='h1'>NewLabel</Label>
       </SafeAreaView>
     </ColorContext>
   )

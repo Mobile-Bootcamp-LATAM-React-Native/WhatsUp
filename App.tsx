@@ -27,6 +27,9 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+import StorybookUIRoot from './.storybook/Storybook';
+export {StorybookUIRoot as default};
+
 const Section: React.FC<
   PropsWithChildren<{
     title: string;
@@ -117,4 +120,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+// export default App;

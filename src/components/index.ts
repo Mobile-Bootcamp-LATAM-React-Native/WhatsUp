@@ -1,5 +1,5 @@
-export { default as Button } from './Button';
+export { default as Button } from './Button/Button';
 export { default as Input } from './Input';
 export { default as Label } from './Label';
 export { default as Avatar } from './Avatar';
-export { default as Loading } from './Loading'
+export { default as Loading } from './Loading/Loading'

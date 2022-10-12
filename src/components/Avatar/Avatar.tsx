@@ -1,46 +1,43 @@
-import { ImageBackground, ImageBackgroundProps, StyleSheet } from 'react-native';
-import React, { useState, useContext, useEffect } from 'react';
+import {ImageBackground, ImageBackgroundProps, StyleSheet} from 'react-native';
+import React, {useState, useContext, useEffect} from 'react';
 
-import { ColorContext } from '../../shared/ColorContext';
+import {ColorContext} from '../../shared/ColorContext';
 
-const DefaultAvatar = require('../assets/default_avatar.png')
+const DefaultAvatar = require('../../assets/default_avatar.png');
 
-type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' |'2xl';
+type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 
 type AvatarProps = {
-  url: string,
-  size?: AvatarSize
+  url: string;
+  size?: AvatarSize;
 } & ImageBackgroundProps;
 
-const Avatar = ({
-  url,
-  size = 'md',
-  ...rest
-}: AvatarProps) => {
-  const styles = getStyles(size)
-  const [error, setError] = useState(false)
+const Avatar = ({url, size = 'md', ...rest}: AvatarProps) => {
+  const styles = getStyles(size);
+  const [error, setError] = useState(false);
   const [source, setSource] = useState(DefaultAvatar);
 
   useEffect(() => {
     if (error) {
-        setSource(DefaultAvatar);
-    }}, [error]);
- 
+      setSource(DefaultAvatar);
+    }
+  }, [error]);
+
   useEffect(() => {
-     setSource({uri: url})
-  }, [url])
- 
+    setSource({uri: url});
+  }, [url]);
 
   return (
     <ImageBackground
       {...rest}
       style={styles.container}
-      source={source} 
-      onError={() => setError(true)}/>
-  )  
-}
+      source={source}
+      onError={() => setError(true)}
+    />
+  );
+};
 
-export default Avatar
+export default Avatar;
 
 const resolveSize = (size: AvatarSize) => {
   switch (size) {
@@ -59,13 +56,10 @@ const resolveSize = (size: AvatarSize) => {
     default:
       return 0;
   }
-}
+};
 
 const getStyles = (size: AvatarSize) => {
-  const {
-    smallMargin,
-    imageBackgroundColor
-  } = useContext(ColorContext);
+  const {smallMargin, imageBackgroundColor} = useContext(ColorContext);
 
   const resolvedSize = resolveSize(size);
 
@@ -76,7 +70,7 @@ const getStyles = (size: AvatarSize) => {
       borderRadius: resolvedSize,
       backgroundColor: imageBackgroundColor,
       width: resolvedSize,
-      height: resolvedSize
+      height: resolvedSize,
     },
   });
-}
+};

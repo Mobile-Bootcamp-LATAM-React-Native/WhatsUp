@@ -5,10 +5,10 @@ export default {
   title: 'React Native Message',
   component: Message,
   args: {
-    message: "Hello",
-    time: "10.00pm",
-    type: "sender",
-  }
+    message: 'Hello',
+    time: '10.00pm',
+    type: 'sender',
+  },
 };
 
 export const Basic = args => <Message {...args} />;

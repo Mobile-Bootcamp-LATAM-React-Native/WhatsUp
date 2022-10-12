@@ -1,6 +1,6 @@
-import { useMyTheme } from './src/hooks';
-import { ColorContextProvider as ColorContext } from '@/shared';
-import { AppNavigation } from '@/navigation';
+import {useMyTheme} from './src/hooks';
+import {ColorContextProvider as ColorContext} from '@/shared';
+import {AppNavigation} from '@/navigation';
 
 const Home = () => {
   const theme = useMyTheme();

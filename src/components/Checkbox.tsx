@@ -4,14 +4,15 @@ import { ColorContext } from '../shared/ColorContext';
 
 type CheckboxProps = {
   text: string;
+  value: boolean;
+  onChange: (value: boolean) => void;
 }
 
-const Checkbox = ({text}: CheckboxProps & TouchableWithoutFeedbackProps) => {
-  const [checked, setChecked] = useState(false);
-  const styles = useStyles(checked);
+const Checkbox = ({text, value, onChange}: CheckboxProps & TouchableWithoutFeedbackProps) => {
+  const styles = useStyles(value);
 
   const onPress = () => {
-    setChecked(!checked);
+    onChange(!value)
   };
 
   return (

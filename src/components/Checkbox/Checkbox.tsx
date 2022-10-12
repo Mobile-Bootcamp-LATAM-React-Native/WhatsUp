@@ -1,18 +1,18 @@
 import { StyleSheet, Text, View, TouchableWithoutFeedback, TouchableWithoutFeedbackProps } from 'react-native'
-import { useContext, useState } from 'react'
-import { ColorContext } from '../shared/ColorContext';
+import { useContext } from 'react'
+import { ColorContext } from '@/shared';
 
-type CheckboxProps = {
+export type CheckboxProps = {
   text: string;
   value: boolean;
-  onChange: (value: boolean) => void;
+  onChange: (val: boolean) => void;
 }
 
 const Checkbox = ({text, value, onChange}: CheckboxProps & TouchableWithoutFeedbackProps) => {
   const styles = useStyles(value);
 
   const onPress = () => {
-    onChange(!value)
+    onChange(!value);
   };
 
   return (

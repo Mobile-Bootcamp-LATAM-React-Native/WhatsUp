@@ -27,7 +27,7 @@ if (parameters) {
 // temporary fix for https://github.com/storybookjs/react-native/issues/327 whilst the issue is investigated
 try {
   argsEnhancers.forEach((enhancer) => addArgsEnhancer(enhancer));
-} catch {}
+} catch { }
 
 const getStories = () => {
   return [
@@ -37,6 +37,7 @@ const getStories = () => {
     require("../src/components/Label.stories.tsx"),
     require("../src/components/Input/Input.stories.tsx"),
     require("../src/components/Avatar/Avatar.stories.tsx"),
+    require("../src/components/Loading/Loading.stories.tsx")
   ];
 };
 

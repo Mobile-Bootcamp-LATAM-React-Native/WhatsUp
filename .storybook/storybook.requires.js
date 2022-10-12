@@ -32,6 +32,7 @@ try {
 const getStories = () => {
   return [
     require("../src/components/Button.stories.tsx"),
+    require("../src/components/Label.stories.tsx"),
     require("../src/components/Input/Input.stories.tsx"),
   ];
 };

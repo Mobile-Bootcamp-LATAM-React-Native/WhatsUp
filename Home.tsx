@@ -1,6 +1,8 @@
-import { ActivityIndicator, SafeAreaView, StyleSheet, Text, useColorScheme } from 'react-native'
-import React, { useState } from 'react'
-import { useMyTheme } from './src/hooks'
+import { ActivityIndicator, SafeAreaView, StyleSheet, Text, useColorScheme } from 'react-native';
+import React, { useState } from 'react';
+import { useMyTheme } from './src/hooks';
+import { Button, Label, Loading } from '@/components';
+import { ColorContextProvider as ColorContext } from '@/shared';
 
 const Home = () => {
   const [loading, setLoading] = useState(false);

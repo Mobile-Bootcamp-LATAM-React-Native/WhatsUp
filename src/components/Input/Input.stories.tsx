@@ -10,4 +10,5 @@ export default {
   },
 };
 
-export const InputBasic = (args: InputProps) => <Input {...args} />;
+export const InputError = (args: InputProps) => <Input {...args} />;
+export const InputNormal = () => <Input isInvalid={false} />;

@@ -1,7 +1,7 @@
 import { ImageBackground, ImageBackgroundProps, StyleSheet } from 'react-native';
 import React, { useState, useContext, useEffect } from 'react';
 
-import { ColorContext } from '../shared/ColorContext';
+import { ColorContext } from '../../shared/ColorContext';
 
 const DefaultAvatar = require('../assets/default_avatar.png')
 

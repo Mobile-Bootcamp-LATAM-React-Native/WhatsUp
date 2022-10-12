@@ -11,7 +11,7 @@ const Checkbox = ({text}: CheckboxProps & TouchableWithoutFeedbackProps) => {
   const styles = useStyles(checked);
 
   const onPress = () => {
-    checked == true ? setChecked(false) : setChecked(true)
+    setChecked(!checked);
   };
 
   return (

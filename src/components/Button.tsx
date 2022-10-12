@@ -9,7 +9,7 @@ import {ColorContext} from '@/shared';
 
 type ButtonType = 'primary' | 'secundary';
 
-type ButtonProps = {
+export type ButtonProps = {
   text: string;
   type?: ButtonType;
 };
@@ -23,7 +23,7 @@ const Button = ({
   const styles = useStyles(type);
 
   return (
-    <TouchableHighlight style={[styles.button, style]} onPress={onPress}>
+    <TouchableHighlight style={[styles.button, style]} onPress={onPress} underlayColor="none">
       <Text style={styles.text}>{text}</Text>
     </TouchableHighlight>
   );

@@ -3,7 +3,7 @@ import React, {useContext, useState} from 'react';
 
 import {ColorContext} from '../../shared/ColorContext';
 
-type InputProps = {
+export type InputProps = {
   isInvalid?: boolean;
 } & TextInputProps;
 

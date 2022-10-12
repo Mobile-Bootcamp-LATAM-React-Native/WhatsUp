@@ -1,15 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-// TODO
-const Avatar = () => {
+const index = () => {
   return (
     <View>
-      <Text>Avatar</Text>
+      <Text>Messenger</Text>
     </View>
   )
 }
 
-export default Avatar
+export default index
 
 const styles = StyleSheet.create({})

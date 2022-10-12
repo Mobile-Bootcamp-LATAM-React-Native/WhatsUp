@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React, {useContext} from 'react';
-import { ColorContext } from '../shared/ColorContext';
+import { ColorContext } from '../../shared/ColorContext';
 
 type MessageType = 'sender' | 'receiver';
 

@@ -9,7 +9,7 @@ import {ColorContext} from '@/shared';
 
 type ButtonType = 'primary' | 'secundary';
 
-type ButtonProps = {
+export type ButtonProps = {
   text: string;
   type?: ButtonType;
 };

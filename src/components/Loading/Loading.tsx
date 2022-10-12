@@ -1,7 +1,7 @@
 import { ActivityIndicator, ActivityIndicatorProps, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import { useContext } from 'react';
-import { ColorContext } from '../shared/ColorContext';
+import { ColorContext } from '../../shared/ColorContext';
 
 type LoadingType = 'large' | 'small';
 

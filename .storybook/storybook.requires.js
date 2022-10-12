@@ -33,8 +33,10 @@ const getStories = () => {
   return [
     require("../src/components/Avatar/Avatar.stories.tsx"),
     require("../src/components/Button.stories.tsx"),
+    require("../src/components/Checkbox/Checkbox.stories.tsx"),
     require("../src/components/Input/Input.stories.tsx"),
     require("../src/components/Label.stories.tsx"),
+    require("../src/components/Loading/Loading.stories.tsx"),
     require("../src/components/Message/Message.stories.tsx"),
   ];
 };

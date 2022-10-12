@@ -6,6 +6,9 @@ export type ThemeType = {
   secundaryColorText: string;
   primaryButtonText: string;
   secundaryButtonText: string;
+  senderColorMessage: string;
+  receiverColorMessage: string;
+  textColorMessage: string;
   smallPadding: number;
   largePadding: number;
   padding: number;
@@ -13,9 +16,11 @@ export type ThemeType = {
   margin: number;
   smallMargin: number;
   largeMargin: number;
-
   textInputStyle: TextInputStyles.TextInputType;
-};
+  imageBackgroundColor: string;
+  loadingColor: string;
+  loadingBackground: string;
+}
 
 const theme = {
   primaryColor: '#10C17D',
@@ -26,7 +31,8 @@ const theme = {
   margin: 8,
   smallMargin: 4,
   largeMargin: 12,
-};
+  imageBackgroundColor: 'gray',
+}
 
 const lightBackgroundColor = '#ffffff';
 
@@ -37,7 +43,12 @@ export const lightTheme: ThemeType = {
   secundaryColorText: theme.primaryColor,
   primaryButtonText: '#fff',
   secundaryButtonText: theme.primaryColor,
+  textColorMessage: '#6b7179',
+  senderColorMessage: '#eafff3',
+  receiverColorMessage: '#f4f6f9',
   textInputStyle: TextInputStyles.lightMode,
+  loadingColor: '#fff',
+  loadingBackground: "#161B20"
 };
 
 export const darkTheme: ThemeType = {
@@ -47,5 +58,10 @@ export const darkTheme: ThemeType = {
   secundaryColorText: theme.primaryColor,
   primaryButtonText: '#fff',
   secundaryButtonText: theme.primaryColor,
+  textColorMessage: '#ddddde',
+  senderColorMessage: '#10c17d',
+  receiverColorMessage: '#161b20',
   textInputStyle: TextInputStyles.darkMode,
+  loadingColor: "#161B20",
+  loadingBackground: "#161B20"
 };

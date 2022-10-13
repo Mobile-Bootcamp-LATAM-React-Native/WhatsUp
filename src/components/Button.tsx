@@ -1,13 +1,18 @@
-import { StyleSheet, TouchableHighlight, TouchableHighlightProps, Text } from 'react-native';
-import { useContext } from 'react';
-import { ColorContext } from '../shared/ColorContext';
+import {
+  StyleSheet,
+  TouchableHighlight,
+  TouchableHighlightProps,
+  Text,
+} from 'react-native';
+import {useContext} from 'react';
+import {ColorContext} from '@/shared';
 
 type ButtonType = 'primary' | 'secundary';
 
-type ButtonProps = {
+export type ButtonProps = {
   text: string;
   type?: ButtonType;
-}
+};
 
 const Button = ({
   text,
@@ -18,15 +23,13 @@ const Button = ({
   const styles = useStyles(type);
 
   return (
-    <TouchableHighlight style={[styles.button, style]} onPress={onPress}>
-      <Text style={styles.text}>
-        {text}
-      </Text>
+    <TouchableHighlight style={[styles.button, style]} onPress={onPress} underlayColor="none">
+      <Text style={styles.text}>{text}</Text>
     </TouchableHighlight>
-  )
-}
+  );
+};
 
-export default Button
+export default Button;
 
 const useStyles = (type: ButtonType) => {
   const {
@@ -53,6 +56,6 @@ const useStyles = (type: ButtonType) => {
       color: type == 'primary' ? primaryButtonText : secundaryButtonText,
       fontWeight: '600',
       fontSize: 18,
-    }
+    },
   });
-}
+};

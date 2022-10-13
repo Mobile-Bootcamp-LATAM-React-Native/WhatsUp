@@ -1,31 +1,32 @@
-import React, {useEffect, useState} from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import React, { useContext } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import {Messenger, SignIn} from '@/features';
-import {RootStackParamList} from './RootStack';
+import { AppContext } from '@/shared';
+import { Messenger, SignIn } from '@/features';
+import { RootStackParamList } from './RootStack';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const AppNavigation = () => {
-  const [storyBookComponent, setStoryBookComponent] = useState<React.FC>(
-    () => () => <></>,
-  );
+  const { isSignedIn } = useContext(AppContext);
 
-  useEffect(() => {
-    const getComp = async () => {
-      let {StoryBook} = await import('../features/Storyboard');
-      setStoryBookComponent(() => StoryBook);
-    };
-    getComp();
-  }, []);
+  const signInScreenOptions = {
+    headerShown: false,
+  }
 
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Storyboard" component={storyBookComponent} />
-        <Stack.Screen name="SignIn" component={SignIn} />
-        <Stack.Screen name="Messenger" component={Messenger} />
+        {isSignedIn ?
+          <>
+            <Stack.Screen name="Messenger" component={Messenger.Messenger} />
+          </> :
+          <>
+            <Stack.Screen name="Welcome" component={SignIn.Welcome} options={signInScreenOptions} />
+            <Stack.Screen name="SignIn" component={SignIn.SignIn} options={signInScreenOptions} />
+            <Stack.Screen name="SignUp" component={SignIn.SignUp} options={signInScreenOptions} />
+          </>}
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -1,3 +1,5 @@
-export { default as SignIn } from './SignIn';
-export { default as Messenger } from './Messenger';
+import * as SignIn from './SignIn';
+import * as Messenger from './Messenger';
 export { default as Storyboard } from './Storyboard';
+
+export { SignIn, Messenger };

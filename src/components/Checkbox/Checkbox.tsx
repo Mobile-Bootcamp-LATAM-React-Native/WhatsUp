@@ -8,7 +8,7 @@ export type CheckboxProps = {
   onChange: (val: boolean) => void;
 }
 
-const Checkbox = ({text, value, onChange}: CheckboxProps & TouchableWithoutFeedbackProps) => {
+const Checkbox = ({text, value, onChange, ...rest}: CheckboxProps & TouchableWithoutFeedbackProps) => {
   const styles = useStyles(value);
 
   const onPress = () => {
@@ -16,7 +16,7 @@ const Checkbox = ({text, value, onChange}: CheckboxProps & TouchableWithoutFeedb
   };
 
   return (
-    <TouchableWithoutFeedback onPress={onPress}>
+    <TouchableWithoutFeedback onPress={onPress} {...rest}>
       <View style={styles.container}>
         <View style={styles.checkbox}></View>
         <Text style={styles.text}>{text}</Text>

@@ -8,25 +8,33 @@ import { RootStackParamList } from './RootStack';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
+const SignedScreens = () => (
+  <>
+    <Stack.Screen name="Messenger" component={Messenger.Messenger} />
+  </>
+)
+
+const AnonymousScreens = () => {
+  const options = {
+    headerShown: false,
+  };
+
+  return (
+    <>
+      <Stack.Screen name="Welcome" component={SignIn.Welcome} options={options} />
+      <Stack.Screen name="SignUp" component={SignIn.SignUp} options={options} />
+      <Stack.Screen name="SignIn" component={SignIn.SignIn} options={options} />
+    </>
+  )
+}
+
 const AppNavigation = () => {
   const { isSignedIn } = useContext(AppContext);
-
-  const signInScreenOptions = {
-    headerShown: false,
-  }
 
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {isSignedIn ?
-          <>
-            <Stack.Screen name="Messenger" component={Messenger.Messenger} />
-          </> :
-          <>
-            <Stack.Screen name="Welcome" component={SignIn.Welcome} options={signInScreenOptions} />
-            <Stack.Screen name="SignIn" component={SignIn.SignIn} options={signInScreenOptions} />
-            <Stack.Screen name="SignUp" component={SignIn.SignUp} options={signInScreenOptions} />
-          </>}
+        {isSignedIn ? SignedScreens() : AnonymousScreens()}
       </Stack.Navigator>
     </NavigationContainer>
   );

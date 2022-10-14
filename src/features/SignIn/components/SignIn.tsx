@@ -4,16 +4,24 @@ import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import { Button, Input, Label, Logo } from '@/components';
 import { RootStackParamList } from '@/navigation';
-import { AppContext } from '@/shared';
+import { AppContext, StorageConstants } from '@/shared';
 import Checkbox from '@/components/Checkbox/Checkbox';
+import { setEncryptedItem } from '@/lib';
 
 type SignInProps = NativeStackScreenProps<RootStackParamList, 'Welcome'>;
 
 const SignIn = ({ }: SignInProps) => {
   const { setIsSignedIn } = useContext(AppContext);
 
-  const onSignIn = () => {
-    setIsSignedIn(true);
+  const onSignIn = async () => {
+    // TODO: replace with firebase logic
+
+    try {
+      setEncryptedItem(StorageConstants.isSignedIn, true);
+      setIsSignedIn(true);
+    } catch (error) {
+      // TODO: handle error
+    }    
   }
 
   return (

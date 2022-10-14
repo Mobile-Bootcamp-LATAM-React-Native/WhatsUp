@@ -29,7 +29,11 @@ const AnonymousScreens = () => {
 }
 
 const AppNavigation = () => {
-  const { isSignedIn } = useContext(AppContext);
+  const { isSignedIn, isLoading } = useContext(AppContext);
+
+  if (isLoading) {
+    return <SignIn.Loading />;
+  }
 
   return (
     <NavigationContainer>

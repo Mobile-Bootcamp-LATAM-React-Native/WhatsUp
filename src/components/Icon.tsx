@@ -1,15 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
-import React from 'react';
+import {createIconSetFromIcoMoon} from 'react-native-vector-icons';
+import icoMoonConfig from '@/assets/selection.json';
 
-// TODO in future: Load async fonts
-const Icon = () => {
-  return (
-    <View>
-      <Text>Icon</Text>
-    </View>
-  )
-}
-
-export default Icon
-
-const styles = StyleSheet.create({})
+export default createIconSetFromIcoMoon(icoMoonConfig);

@@ -1,10 +1,21 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { StyleSheet, View } from 'react-native'
+import React, { useContext } from 'react'
+
+import { Button } from '@/components'
+import { AppContext, StorageConstants } from '@/shared'
+import { removeEncryptedItem } from '@/lib'
 
 const Messenger = () => {
+  const appContext = useContext(AppContext);
+
+  const onLogout = async () => {
+    appContext.setIsSignedIn(false);
+    removeEncryptedItem(StorageConstants.isSignedIn);
+  }
+
   return (
     <View>
-      <Text>Messenger</Text>
+      <Button text="Logout" onPress={onLogout} />
     </View>
   )
 }

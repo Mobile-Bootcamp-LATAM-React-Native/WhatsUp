@@ -5,3 +5,5 @@ export { default as Message } from './Message/Message';
 export { default as Avatar } from './Avatar/Avatar';
 export { default as Loading } from './Loading/Loading'
 export { default as Logo } from './Logo';
+export { default as Spinner } from './Spinner';
+export { default as Icon } from './Icon';

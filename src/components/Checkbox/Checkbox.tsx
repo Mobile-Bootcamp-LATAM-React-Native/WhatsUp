@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, TouchableWithoutFeedback, TouchableWithoutFeedbackProps } from 'react-native'
 import { useContext } from 'react'
 import { ColorContext } from '@/shared';
+import Icon from '../Icon';
 
 export type CheckboxProps = {
   text: string;
@@ -18,7 +19,9 @@ const Checkbox = ({text, value, onChange, ...rest}: CheckboxProps & TouchableWit
   return (
     <TouchableWithoutFeedback onPress={onPress} {...rest}>
       <View style={styles.container}>
-        <View style={styles.checkbox}></View>
+        <View style={styles.checkbox}>
+          <Icon name="checkmark" />
+        </View>
         <Text style={styles.text}>{text}</Text>
       </View>
     </TouchableWithoutFeedback>

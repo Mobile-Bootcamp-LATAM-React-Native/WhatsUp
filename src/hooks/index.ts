@@ -12,6 +12,7 @@ export const useMyTheme = () => {
 
 export const useApp = () => {
   const [isSignedIn, setIsSignedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
-  return { isSignedIn, setIsSignedIn };
+  return { isSignedIn, setIsSignedIn, isLoading, setIsLoading };
 }

@@ -1,4 +1,4 @@
-package com.whatsup.newarchitecture.components;
+package com.whatsup.latam.newarchitecture.components;
 
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;

@@ -20,7 +20,7 @@ const Checkbox = ({text, value, onChange, ...rest}: CheckboxProps & TouchableWit
     <TouchableWithoutFeedback onPress={onPress} {...rest}>
       <View style={styles.container}>
         <View style={styles.checkbox}>
-          <Icon name="checkmark" />
+          <Icon name="checkmark"  style={styles.icon}/>
         </View>
         <Text style={styles.text}>{text}</Text>
       </View>
@@ -50,11 +50,17 @@ const useStyles = (checked: boolean) => {
       backgroundColor: checked == true ? primaryColor : backgroundColor,
       borderWidth: 1,
       borderRadius: 5,
-      marginHorizontal: 5
+      marginHorizontal: 5,
+      alignItems: 'center',
+      justifyContent: 'center',
     },
     text: {
       color: primaryColorText,
       marginHorizontal: 5
-    }
+    },
+    icon: {
+      color: '#fff',
+      fontSize: 14,
+    },
   });
 }

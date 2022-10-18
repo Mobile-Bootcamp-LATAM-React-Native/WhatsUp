@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "1013391316238",
+    "project_id": "whatsup-3ff0a",
+    "storage_bucket": "whatsup-3ff0a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1013391316238:android:4254cd369b54828f0c735f",
+        "android_client_info": {
+          "package_name": "com.whatsup"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1013391316238-lav8kepbtua36fl0nu9eu3e7qf58uq9l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-KZEwiz6YceW0lYpnXlBDe_VO1HmecoE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1013391316238-lav8kepbtua36fl0nu9eu3e7qf58uq9l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1013391316238:android:18ce0be88a8e95170c735f",
+        "android_client_info": {
+          "package_name": "com.whatsup.latam"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1013391316238-lav8kepbtua36fl0nu9eu3e7qf58uq9l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-KZEwiz6YceW0lYpnXlBDe_VO1HmecoE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1013391316238-lav8kepbtua36fl0nu9eu3e7qf58uq9l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

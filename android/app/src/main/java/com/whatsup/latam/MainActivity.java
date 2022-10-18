@@ -1,4 +1,4 @@
-package com.whatsup;
+package com.whatsup.latam;
 
 import android.os.Bundle;
 import com.facebook.react.ReactActivity;

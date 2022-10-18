@@ -1,4 +1,4 @@
-package com.whatsup.newarchitecture.modules;
+package com.whatsup.latam.newarchitecture.modules;
 
 import com.facebook.jni.HybridData;
 import com.facebook.react.ReactPackage;

@@ -1,4 +1,4 @@
-package com.whatsup.newarchitecture;
+package com.whatsup.latam.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.fabric.ReactNativeConfig;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.whatsup.BuildConfig;
-import com.whatsup.newarchitecture.components.MainComponentsRegistry;
-import com.whatsup.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.whatsup.latam.BuildConfig;
+import com.whatsup.latam.newarchitecture.components.MainComponentsRegistry;
+import com.whatsup.latam.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 

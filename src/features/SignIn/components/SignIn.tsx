@@ -50,7 +50,10 @@ const SignIn = ({ navigation }: SignInProps) => {
           </Label>
         </View>
 
-        <Input value={phone} onChangeText={setPhone} />
+        <Label type="h4" style={styles.inputLabel}>
+          Phone Number
+        </Label>
+        <Input value={phone} onChangeText={setPhone} iconName="phone" />
 
         <Checkbox style={styles.check} text="Remember me" value={true} onChange={() => { }} />
 
@@ -65,6 +68,7 @@ export default SignIn
 const styles = StyleSheet.create({
   main: {
     flex: 1,
+    padding: 20,
   },
   content: {
     flex: 1,
@@ -78,8 +82,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  button: {
-  },
-  check: {
-  },
+  inputLabel: {
+    paddingHorizontal: 30,
+  }
 })

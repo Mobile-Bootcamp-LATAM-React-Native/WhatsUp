@@ -21,8 +21,10 @@ const OTPCode = ({ }: OTPCodeProps) => {
   }
 
   return (
-    <View>
-      <Input value={code} onChangeText={setCode} />
+    <View style={styles.container}>
+      <View style={styles.main}>
+        <Input value={code} onChangeText={setCode} />
+      </View>
 
       <Button text="Verify" onPress={verifyCode} />
     </View>
@@ -31,4 +33,14 @@ const OTPCode = ({ }: OTPCodeProps) => {
 
 export default OTPCode
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 20,
+  },
+
+  main: {
+    flex: 1,
+    justifyContent: 'center',
+  }
+})

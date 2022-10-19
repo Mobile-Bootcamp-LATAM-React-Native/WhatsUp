@@ -1,13 +1,21 @@
-import {StyleSheet, TextInput, TextInputProps} from 'react-native';
-import React, {useContext, useState} from 'react';
+import { StyleSheet, TextInput, TextInputProps, View } from 'react-native';
+import React, { useContext, useState } from 'react';
 
-import {ColorContext} from '../../shared/ColorContext';
+import { ColorContext } from '../../shared/ColorContext';
+import Icon from '../Icon';
 
 export type InputProps = {
+  iconName?: string;
   isInvalid?: boolean;
 } & TextInputProps;
 
-const Input = ({isInvalid, style: customStyles, onChangeText, ...rest}: InputProps) => {
+const Input = ({
+  iconName,
+  isInvalid,
+  style: customStyles,
+  onChangeText,
+  ...rest
+}: InputProps) => {
   const themeStyles = useStyles();
   const inputStyles: any[] = [themeStyles.input];
 
@@ -32,35 +40,49 @@ const Input = ({isInvalid, style: customStyles, onChangeText, ...rest}: InputPro
 
   const onChange = (text: string) => {
     setTextInputContent(text);
-    onChangeText(text);
+
+    if (onChangeText) {
+      onChangeText(text);
+    }
   };
 
   return (
-    <TextInput
-      {...rest}
-      style={StyleSheet.flatten(inputStyles)}
-      onFocus={onFocus}
-      onBlur={onBlur}
-      onChangeText={onChange}
-      placeholderTextColor={themeStyles.placeholderStyle.color}
-    />
+    <View style={themeStyles.container}>
+      {iconName && <Icon name={iconName} style={themeStyles.icon} />}
+
+      <TextInput
+        {...rest}
+        style={StyleSheet.flatten(inputStyles)}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        onChangeText={onChange}
+        placeholderTextColor={themeStyles.placeholderStyle.color}
+      />
+    </View>
   );
 };
 
 export default Input;
 
 const useStyles = () => {
-  const {primaryColor, border, textInputStyle, primaryColorText} =
+  const { primaryColor, border, textInputStyle, primaryColorText } =
     useContext(ColorContext);
 
   return StyleSheet.create({
-    input: {
+    container: {
+      flexDirection: 'row',
       backgroundColor: textInputStyle.backgroundColor,
       borderColor: textInputStyle.borderColor,
       borderWidth: textInputStyle.borderWidth,
       borderRadius: border,
       paddingHorizontal: textInputStyle.paddingHorizontal,
-      paddingVertical: textInputStyle.paddingVertical,
+      alignItems: 'center',
+    },
+
+    input: {
+      flex: 1,
+      height: 40,
+      paddingLeft: 12,
       fontWeight: textInputStyle.placeholderFontWeight,
       color: primaryColorText,
     },
@@ -80,5 +102,9 @@ const useStyles = () => {
     textStyle: {
       fontWeight: textInputStyle.normalFontWeight,
     },
+
+    icon: {
+      fontSize: 20,
+    }
   });
 };

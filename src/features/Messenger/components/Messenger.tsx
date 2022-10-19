@@ -10,7 +10,7 @@ const Messenger = () => {
 
   const onLogout = async () => {
     appContext.setIsSignedIn(false);
-    removeEncryptedItem(StorageConstants.isSignedIn);
+    removeEncryptedItem(StorageConstants.user);
   }
 
   return (

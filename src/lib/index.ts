@@ -1,4 +1,8 @@
 import EncryptedStorage from 'react-native-encrypted-storage';
+import EventEmitter from 'eventemitter3';
+
+// Singleton - Event Emitter
+const EE = new EventEmitter();
 
 export async function getEncryptedItem<T>(key: string): Promise<T | null> {
   const stringValue = await EncryptedStorage.getItem(key);
@@ -26,3 +30,10 @@ export const setEncryptedItem = async (key: string, value: any): Promise<void> =
 }
 
 export const removeEncryptedItem = EncryptedStorage.removeItem;
+
+export const addListener = (event: string, fn: (...args) => void) => EE.addListener(event, fn);
+
+export const emit = (event: string, ...args) => EE.emit(event, args);
+
+export const removeListener = (event: string, fn: (...args) => void) => EE.removeListener(event, fn);
+

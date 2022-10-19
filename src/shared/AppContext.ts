@@ -1,5 +1,4 @@
 import { createContext, RefObject } from 'react';
-import { FirebaseAuthTypes } from '@react-native-firebase/auth';
 
 type AppContextType = {
   isSignedIn: boolean,
@@ -8,7 +7,6 @@ type AppContextType = {
   setIsLoading: (_: boolean) => void,
   isBusy: boolean,
   setIsBusy: (_: boolean) => void,
-  confirmation: RefObject<FirebaseAuthTypes.ConfirmationResult> | null,
 }
 
 const defaultValue: AppContextType = {
@@ -18,7 +16,6 @@ const defaultValue: AppContextType = {
   setIsLoading: (_: boolean) => {},
   isBusy: false,
   setIsBusy: (_: boolean) => {},
-  confirmation: null,
 }
 
 export const AppContext = createContext(defaultValue);

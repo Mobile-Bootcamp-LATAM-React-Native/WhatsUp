@@ -1,42 +1,59 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState, useRef } from 'react';
 import { StyleSheet, View } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import auth from '@react-native-firebase/auth';
+import { FirebaseAuthTypes } from '@react-native-firebase/auth';
 
 import { Button, Input, Label, Logo } from '@/components';
 import { RootStackParamList } from '@/navigation';
 import { AppContext, StorageConstants } from '@/shared';
 import Checkbox from '@/components/Checkbox/Checkbox';
-import { setEncryptedItem } from '@/lib';
+import { addListener, removeListener, setEncryptedItem } from '@/lib';
 
 type SignInProps = NativeStackScreenProps<RootStackParamList, 'Welcome'>;
 
 const SignIn = ({ navigation }: SignInProps) => {
-  const { setIsBusy, confirmation } = useContext(AppContext);
+  const confirmation = useRef<FirebaseAuthTypes.ConfirmationResult>(null);
+  const { setIsBusy } = useContext(AppContext);
   const [phone, setPhone] = useState('+59179798381');
   const { setIsSignedIn } = useContext(AppContext);
+
 
   const signInWithPhoneNumber = async () => {
     try {
       setIsBusy(true);
-      const confirm = confirmation as any;
-      confirm.current = await auth().signInWithPhoneNumber(phone);
+      // confirmation.current = await auth().signInWithPhoneNumber(phone);
       navigation.navigate('OTPCode');
     } finally {
       setIsBusy(false);
     }
   }
 
-  // const onSignIn = async () => {
-  //   // TODO: replace with firebase logic
+  const onConfirmation = async (args: any[]) => {
+    try {
+      setIsBusy(true);
 
-  //   try {
-  //     setEncryptedItem(StorageConstants.isSignedIn, true);
-  //     setIsSignedIn(true);
-  //   } catch (error) {
-  //     // TODO: handle error
-  //   }    
-  // }
+      const [verificationCode] = args;
+      const result = await confirmation.current?.confirm(verificationCode);
+
+      if (result) {
+        await setEncryptedItem(StorageConstants.user, result);
+        setIsSignedIn(true);
+      }
+    } finally {
+      setIsBusy(false);
+    }
+  }
+
+  useEffect(() => {
+    // Register event - componentDidMount
+    addListener('onConfirmation', onConfirmation);
+
+    return () => {
+      // Unregister event - componentWillUnmount
+      removeListener('onConfirmation', onConfirmation);
+    }
+  }, []);
 
   return (
     <View style={styles.main}>
@@ -55,9 +72,9 @@ const SignIn = ({ navigation }: SignInProps) => {
         </Label>
         <Input value={phone} onChangeText={setPhone} iconName="phone" />
 
-        <Checkbox style={styles.check} text="Remember me" value={true} onChange={() => { }} />
+        <Checkbox text="Remember me" value={true} onChange={() => { }} />
 
-        <Button style={styles.button} text="Sign In" onPress={signInWithPhoneNumber} />
+        <Button text="Sign In" onPress={signInWithPhoneNumber} />
       </View>
     </View>
   )

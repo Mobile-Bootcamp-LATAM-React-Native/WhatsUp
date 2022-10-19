@@ -1,5 +1,5 @@
-import { StyleSheet, TextInput, TextInputProps, View } from 'react-native';
-import React, { useContext, useState } from 'react';
+import { StyleSheet, TextInput, TextInputProps, View, StyleProp, ViewStyle, TextStyle } from 'react-native';
+import React, { useContext, useState, forwardRef, useRef, useImperativeHandle } from 'react';
 
 import { ColorContext } from '../../shared/ColorContext';
 import Icon from '../Icon';
@@ -7,20 +7,29 @@ import Icon from '../Icon';
 export type InputProps = {
   iconName?: string;
   isInvalid?: boolean;
+  containerStyle?: StyleProp<ViewStyle>,
 } & TextInputProps;
 
 const Input = ({
   iconName,
   isInvalid,
+  containerStyle,
   style: customStyles,
   onChangeText,
   ...rest
-}: InputProps) => {
+}: InputProps, ref) => {
   const themeStyles = useStyles();
   const inputStyles: any[] = [themeStyles.input];
+  const inputRef = useRef<TextInput>(null);
 
   const [isActive, setIsActive] = useState(false);
   const [textInputContent, setTextInputContent] = useState('');
+
+  useImperativeHandle(ref, () => ({
+    focus: () => {
+      inputRef.current?.focus();
+    }
+  }));
 
   inputStyles.push(customStyles);
 
@@ -46,29 +55,49 @@ const Input = ({
     }
   };
 
-  return (
-    <View style={themeStyles.container}>
-      {iconName && <Icon name={iconName} style={themeStyles.icon} />}
+  const MyInput = ({ style }: { style?: StyleProp<TextStyle> }) => (
+    <TextInput
+      {...rest}
+      ref={inputRef}
+      style={[style, StyleSheet.flatten(inputStyles)]}
+      onFocus={onFocus}
+      onBlur={onBlur}
+      onChangeText={onChange}
+      placeholderTextColor={themeStyles.placeholderStyle.color}
+    />
+  )
 
-      <TextInput
-        {...rest}
-        style={StyleSheet.flatten(inputStyles)}
-        onFocus={onFocus}
-        onBlur={onBlur}
-        onChangeText={onChange}
-        placeholderTextColor={themeStyles.placeholderStyle.color}
-      />
-    </View>
-  );
+  if (iconName) {
+    return (
+      <View style={[themeStyles.container, containerStyle]}>
+        <Icon name={iconName} style={themeStyles.icon} />
+
+        <MyInput />
+      </View>
+    )
+  }
+
+  return <MyInput style={themeStyles.justInput} />
 };
 
-export default Input;
+export default forwardRef(Input);
+
+// export default Input;
 
 const useStyles = () => {
   const { primaryColor, border, textInputStyle, primaryColorText } =
     useContext(ColorContext);
 
   return StyleSheet.create({
+    justInput: {
+      backgroundColor: textInputStyle.backgroundColor,
+      borderColor: textInputStyle.borderColor,
+      borderWidth: textInputStyle.borderWidth,
+      borderRadius: border,
+      paddingHorizontal: textInputStyle.paddingHorizontal,
+      alignItems: 'center',
+    },
+
     container: {
       flexDirection: 'row',
       backgroundColor: textInputStyle.backgroundColor,

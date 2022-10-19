@@ -24,6 +24,7 @@ const AnonymousScreens = () => {
       <Stack.Screen name="Welcome" component={SignIn.Welcome} options={options} />
       <Stack.Screen name="SignUp" component={SignIn.SignUp} options={options} />
       <Stack.Screen name="SignIn" component={SignIn.SignIn} options={options} />
+      <Stack.Screen name="OTPCode" component={SignIn.OTPCode} />
     </>
   )
 }

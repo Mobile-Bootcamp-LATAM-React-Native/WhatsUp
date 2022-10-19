@@ -7,7 +7,7 @@ export type InputProps = {
   isInvalid?: boolean;
 } & TextInputProps;
 
-const Input = ({isInvalid, style: customStyles, ...rest}: InputProps) => {
+const Input = ({isInvalid, style: customStyles, onChangeText, ...rest}: InputProps) => {
   const themeStyles = useStyles();
   const inputStyles: any[] = [themeStyles.input];
 
@@ -32,6 +32,7 @@ const Input = ({isInvalid, style: customStyles, ...rest}: InputProps) => {
 
   const onChange = (text: string) => {
     setTextInputContent(text);
+    onChangeText(text);
   };
 
   return (

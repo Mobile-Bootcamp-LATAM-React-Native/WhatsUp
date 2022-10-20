@@ -13,6 +13,7 @@ import com.whatsup.latam.newarchitecture.MainApplicationReactNativeHost;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import io.invertase.firebase.auth.ReactNativeFirebaseAuthPackage;
+import com.rt2zz.reactnativecontacts.ReactNativeContacts;
 
 public class MainApplication extends Application implements ReactApplication {
 

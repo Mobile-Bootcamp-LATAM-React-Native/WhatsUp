@@ -5,12 +5,13 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { AppContext } from '@/shared';
 import { Messenger, SignIn } from '@/features';
 import { RootStackParamList } from './RootStack';
+import TopNavigation from './TopNavigation';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const SignedScreens = () => (
   <>
-    <Stack.Screen name="Messenger" component={Messenger.Messenger} />
+    <Stack.Screen name="Messenger" component={TopNavigation} />
   </>
 )
 

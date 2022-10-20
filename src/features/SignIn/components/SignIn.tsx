@@ -22,7 +22,7 @@ const SignIn = ({ navigation }: SignInProps) => {
   const signInWithPhoneNumber = async () => {
     try {
       setIsBusy(true);
-      // confirmation.current = await auth().signInWithPhoneNumber(phone);
+      confirmation.current = await auth().signInWithPhoneNumber(phone);
       navigation.navigate('OTPCode');
     } finally {
       setIsBusy(false);

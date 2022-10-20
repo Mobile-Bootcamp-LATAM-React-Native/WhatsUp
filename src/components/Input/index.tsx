@@ -55,34 +55,37 @@ const Input = ({
     }
   };
 
-  const MyInput = ({ style }: { style?: StyleProp<TextStyle> }) => (
-    <TextInput
-      {...rest}
-      ref={inputRef}
-      style={[style, StyleSheet.flatten(inputStyles)]}
-      onFocus={onFocus}
-      onBlur={onBlur}
-      onChangeText={onChange}
-      placeholderTextColor={themeStyles.placeholderStyle.color}
-    />
-  )
-
   if (iconName) {
     return (
       <View style={[themeStyles.container, containerStyle]}>
         <Icon name={iconName} style={themeStyles.icon} />
 
-        <MyInput />
+        <TextInput
+          {...rest}
+          ref={inputRef}
+          style={StyleSheet.flatten(inputStyles)}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          onChangeText={onChange}
+          placeholderTextColor={themeStyles.placeholderStyle.color}
+        />
       </View>
     )
   }
 
-  return <MyInput style={themeStyles.justInput} />
+  return (<TextInput
+    {...rest}
+    ref={inputRef}
+    style={[themeStyles.justInput, StyleSheet.flatten(inputStyles)]}
+    onFocus={onFocus}
+    onBlur={onBlur}
+    onChangeText={onChange}
+    placeholderTextColor={themeStyles.placeholderStyle.color}
+  />)
+
 };
 
 export default forwardRef(Input);
-
-// export default Input;
 
 const useStyles = () => {
   const { primaryColor, border, textInputStyle, primaryColorText } =

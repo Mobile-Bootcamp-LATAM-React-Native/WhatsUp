@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState, useRef } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, TextInput, View } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import auth from '@react-native-firebase/auth';
 import { FirebaseAuthTypes } from '@react-native-firebase/auth';

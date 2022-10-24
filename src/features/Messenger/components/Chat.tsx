@@ -2,7 +2,9 @@ import { StyleSheet, View, ScrollView } from 'react-native'
 import { useEffect } from 'react'
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-import { RootStackParamList, ContactHeader } from '@/navigation';
+// import { RootStackParamList, ContactHeader } from '@/navigation';
+import type { RootStackParamList } from '@/navigation/RootStack';
+import ContactHeader from '@/navigation/components/ContactHeader';
 import { Input, Message } from '@/components';
 
 type ChatProps = NativeStackScreenProps<RootStackParamList, 'Chat'>;

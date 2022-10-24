@@ -1,4 +1,5 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 
 import { useMyTheme, useApp } from '@/hooks';
 import {
@@ -7,6 +8,7 @@ import {
 } from '@/shared';
 import { AppNavigation } from '@/navigation';
 import { Loading } from '@/components';
+import store from '@/store';
 
 const Home = () => {
   const theme = useMyTheme();
@@ -21,13 +23,15 @@ const Home = () => {
   }
 
   return (
-    <AppContext value={app}>
-      <ColorContext value={theme}>
-        <AppNavigation />
+    <Provider store={store}>
+      <AppContext value={app}>
+        <ColorContext value={theme}>
+          <AppNavigation />
 
-        <SharedLoading />
-      </ColorContext>
-    </AppContext>
+          <SharedLoading />
+        </ColorContext>
+      </AppContext>
+    </Provider>
   );
 };
 

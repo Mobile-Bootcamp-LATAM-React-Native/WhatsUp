@@ -1,25 +1,10 @@
 import { StyleSheet, FlatList, PermissionsAndroid, View, TouchableHighlight, TouchableOpacity } from 'react-native'
 import { useEffect, useState } from 'react';
 import NativeContacts, { Contact } from 'react-native-contacts';
-import { Label } from '@/components';
+
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '@/navigation';
-
-type ContactItemProps = {
-  onPress: (contact: Contact) => void,
-} & Contact
-
-const ContactItem = ({ onPress, ...contact }: ContactItemProps) => {
-  return (
-    <TouchableOpacity
-      onPress={() => onPress(contact)}
-      style={styles.contact}>
-      <Label>
-        {contact.givenName}
-      </Label>
-    </TouchableOpacity>
-  )
-} 
+import ContactItem from './Contact';
 
 type ContactsProps = NativeStackScreenProps<RootStackParamList, 'Contacts'>;
 
@@ -42,13 +27,11 @@ const Contacts = ({
     setContacts(contacts);
   }
 
-  const goToChat = ({ givenName, phoneNumbers }: Contact) => () => {
+  const goToChat = (contact: Contact) => () => {
+    const { phoneNumbers } = contact;
     const [phone] = phoneNumbers;
 
-    navigation.replace('Chat', {
-      name: givenName,
-      phone: phone.number,
-    });
+    navigation.replace('Chat', contact);
   }
 
   useEffect(() => {
@@ -67,9 +50,5 @@ const Contacts = ({
 export default Contacts
 
 const styles = StyleSheet.create({
-  contact: {
-    padding: 12,
-    borderBottomWidth: 1,
-    borderColor: 'grey',
-  }
+  
 })

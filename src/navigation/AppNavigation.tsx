@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { AppContext } from '@/shared';
+import { AppContext, ColorContext } from '@/shared';
 import { Messenger, SignIn } from '@/features';
 import { RootStackParamList } from './RootStack';
 import TopNavigation from './TopNavigation';
@@ -10,20 +10,40 @@ import ContactHeader from './components/ContactHeader';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-const SignedScreens = () => (
-  <>
-    <Stack.Screen name="Messenger" component={TopNavigation} />
-    <Stack.Screen name="Contacts" component={Messenger.Contacts} />
-    <Stack.Screen
-      name="Chat"
-      component={Messenger.Chat}
-      options={{
-        title: 'Chat',
-        headerTitle: ContactHeader,
-      }}
-    />
-  </>
-)
+const SignedScreens = ({
+  backgroundColor,
+  primaryButtonText,
+}) => {
+  console.log(backgroundColor);
+  
+  return (
+    <>
+      <Stack.Screen
+        name="Messenger"
+        component={TopNavigation}
+        options={{
+          title: 'WhatsUp',
+        }}
+      />
+      <Stack.Screen name="Contacts" component={Messenger.Contacts}
+        options={{
+          title: 'Select contact',
+          headerTintColor: primaryButtonText,
+          headerStyle: {
+            backgroundColor: backgroundColor,
+          }
+        }} />
+      <Stack.Screen
+        name="Chat"
+        component={Messenger.Chat}
+        options={{
+          title: 'Chat',
+          headerTitle: ContactHeader,
+        }}
+      />
+    </>
+  )
+}
 
 const AnonymousScreens = () => {
   const options = {
@@ -41,6 +61,7 @@ const AnonymousScreens = () => {
 }
 
 const AppNavigation = () => {
+  const { primaryColor, primaryButtonText } = useContext(ColorContext);
   const { isSignedIn, isLoading } = useContext(AppContext);
 
   if (isLoading) {
@@ -50,7 +71,7 @@ const AppNavigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {isSignedIn ? SignedScreens() : AnonymousScreens()}
+        {isSignedIn ? SignedScreens({ backgroundColor: primaryColor, primaryButtonText }) : AnonymousScreens()}
       </Stack.Navigator>
     </NavigationContainer>
   );

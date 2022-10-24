@@ -1,4 +1,5 @@
 import { FirebaseAuthTypes } from '@react-native-firebase/auth';
+import { Contact } from 'react-native-contacts';
 
 export type RootStackParamList = {
   Welcome: undefined,
@@ -8,9 +9,5 @@ export type RootStackParamList = {
   Storyboard: undefined,
   OTPCode: undefined,
   Contacts: undefined,
-  Chat: {
-    phone: string,
-    name: string,
-    photo?: string,
-  }
+  Chat: Contact;
 }

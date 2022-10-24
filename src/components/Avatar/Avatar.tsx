@@ -1,4 +1,4 @@
-import {ImageBackground, ImageBackgroundProps, StyleSheet} from 'react-native';
+import {ImageBackground, ImageBackgroundProps, StyleSheet, ImageSourcePropType} from 'react-native';
 import React, {useState, useContext, useEffect} from 'react';
 
 import {ColorContext} from '../../shared/ColorContext';
@@ -8,14 +8,14 @@ const DefaultAvatar = require('../../assets/default_avatar.png');
 type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 
 type AvatarProps = {
-  url: string;
+  url?: string;
   size?: AvatarSize;
 } & ImageBackgroundProps;
 
 const Avatar = ({url, size = 'md', ...rest}: AvatarProps) => {
   const styles = getStyles(size);
   const [error, setError] = useState(false);
-  const [source, setSource] = useState(DefaultAvatar);
+  const [source, setSource] = useState<ImageSourcePropType | undefined>(undefined);
 
   useEffect(() => {
     if (error) {
@@ -24,14 +24,16 @@ const Avatar = ({url, size = 'md', ...rest}: AvatarProps) => {
   }, [error]);
 
   useEffect(() => {
-    setSource({uri: url});
+    if (url) {
+      setSource({uri: url});
+    }
   }, [url]);
 
   return (
     <ImageBackground
       {...rest}
       style={styles.container}
-      source={source}
+      source={DefaultAvatar || source}
       onError={() => setError(true)}
     />
   );

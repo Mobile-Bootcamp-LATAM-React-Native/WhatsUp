@@ -3,3 +3,5 @@ export { default as SignIn } from './components/SignIn';
 export { default as SignUp } from './components/SignUp';
 export { default as Loading } from './components/Loading';
 export { default as OTPCode } from './components/OTPCode';
+
+export { default as singInReducer } from './SingIn.slice';

@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { messengerReducer } from '@/features/Messenger';
+import { singInReducer } from '@/features/SignIn';
 
 const store = configureStore({
   reducer: {
     messenger: messengerReducer,
+    signIn: singInReducer,
   }
 });
 

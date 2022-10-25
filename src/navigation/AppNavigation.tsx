@@ -1,12 +1,15 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { AppContext, ColorContext } from '@/shared';
+import { AppContext, ColorContext, StorageConstants } from '@/shared';
 import { Messenger, SignIn } from '@/features';
 import { RootStackParamList } from './RootStack';
 import TopNavigation from './TopNavigation';
 import ContactHeader from './components/ContactHeader';
+import MessengerHeader from './components/MessengerHeader';
+import { useAppSelector, useAppDispatch } from '@/hooks';
+import { getEncryptedItem } from '@/lib';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -23,6 +26,7 @@ const SignedScreens = ({
         component={TopNavigation}
         options={{
           title: 'WhatsUp',
+          header: MessengerHeader,
         }}
       />
       <Stack.Screen name="Contacts" component={Messenger.Contacts}
@@ -62,7 +66,21 @@ const AnonymousScreens = () => {
 
 const AppNavigation = () => {
   const { primaryColor, primaryButtonText } = useContext(ColorContext);
-  const { isSignedIn, isLoading } = useContext(AppContext);
+  const { isLoading } = useContext(AppContext);
+  const dispatch = useAppDispatch();
+  const isSignedIn = useAppSelector(state => state.signIn.isSignedIn);
+
+  const checkUser = async () => {
+    const user = await getEncryptedItem(StorageConstants.user);
+
+    if (user) {
+      dispatch({ type: 'SIGNIN/LOGIN', payload: user });
+    }
+  }
+
+  useEffect(() => {
+    checkUser();
+  }, []);
 
   if (isLoading) {
     return <SignIn.Loading />;

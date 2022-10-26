@@ -17,9 +17,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 const SignedScreens = ({
   backgroundColor,
   primaryButtonText,
-}) => {
-  console.log(backgroundColor);
-  
+}) => { 
   return (
     <>
       <Stack.Screen
@@ -69,14 +67,13 @@ const AppNavigation = () => {
   const { primaryColor, primaryButtonText } = useContext(ColorContext);
   const { isLoading } = useContext(AppContext);
   const dispatch = useAppDispatch();
-  const isSignedIn = useAppSelector(state => state.signIn.isSignedIn);
+  const isSignedIn = useAppSelector(state => Boolean(state.signIn.user));
 
   const checkUser = async () => {
     const userItem = await getEncryptedItem(StorageConstants.user);
 
     if (userItem) {
       const { user } = userItem as any;
-      // dispatch({ type: 'SIGNIN/LOGIN', payload: user });
       dispatch(login(user))
     }
   }

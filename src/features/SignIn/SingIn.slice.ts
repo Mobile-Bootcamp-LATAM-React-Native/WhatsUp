@@ -1,5 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit';
-import type { PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
+
+import { removeEncryptedItem } from '@/lib';
+import { StorageConstants } from '@/shared';
+
+export const logout = createAsyncThunk('logout', async () => {
+  // throw new Error('intentional error');
+  await removeEncryptedItem(StorageConstants.user);
+});
 
 type User = {
   name: string,
@@ -7,12 +15,10 @@ type User = {
 
 interface SignInState {
   user?: User | undefined,
-  isSignedIn: boolean,
 }
 
 const initialState: SignInState = {
   user: undefined,
-  isSignedIn: false,
 }
 
 export const singInSlice = createSlice({
@@ -20,16 +26,19 @@ export const singInSlice = createSlice({
   initialState,
   reducers: {
     login(state, action: PayloadAction<User>) {
-      state.isSignedIn = true;
       state.user = action.payload;
     },
-    logout(state) {
-      state.isSignedIn = false;
+  },
+  extraReducers(builder) {
+    builder.addCase(logout.fulfilled, state => {
       state.user = undefined;
-    },
-  }
+    }),
+    builder.addCase(logout.rejected, state => {
+      console.error('Logout has failed')
+    })
+  },
 })
 
-export const { login, logout } = singInSlice.actions;
+export const { login } = singInSlice.actions;
 
 export default singInSlice.reducer;

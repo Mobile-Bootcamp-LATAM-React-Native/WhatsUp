@@ -9,15 +9,16 @@ import { RootStackParamList } from '@/navigation';
 import { AppContext, StorageConstants } from '@/shared';
 import Checkbox from '@/components/Checkbox/Checkbox';
 import { addListener, removeListener, setEncryptedItem } from '@/lib';
+import { useAppDispatch } from '@/hooks';
+import { login } from '../SingIn.slice';
 
 type SignInProps = NativeStackScreenProps<RootStackParamList, 'Welcome'>;
 
 const SignIn = ({ navigation }: SignInProps) => {
+  const dispatch = useAppDispatch();
   const confirmation = useRef<FirebaseAuthTypes.ConfirmationResult>(null);
   const { setIsBusy } = useContext(AppContext);
   const [phone, setPhone] = useState('+59179798381');
-  const { setIsSignedIn } = useContext(AppContext);
-
 
   const signInWithPhoneNumber = async () => {
     try {
@@ -38,7 +39,8 @@ const SignIn = ({ navigation }: SignInProps) => {
 
       if (result) {
         await setEncryptedItem(StorageConstants.user, result);
-        setIsSignedIn(true);
+        const { user } = result as any;
+        dispatch(login(user));
       }
     } finally {
       setIsBusy(false);

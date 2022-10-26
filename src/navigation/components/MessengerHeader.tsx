@@ -3,14 +3,15 @@ import React, { useContext } from 'react'
 import { Button, Icon, Label } from '@/components'
 import { ColorContext } from '@/shared';
 import { useAppDispatch } from '@/hooks';
+import { logout } from '@/features/SignIn';
 
 const MessengerHeader = () => {
   const styles = useStyles();
   const dispatch = useAppDispatch()
 
   const onLogout = () => {
-    console.log('LOGOUT');
-    dispatch({ type: 'SIGNIN/LOGOUT' });
+    // dispatch({ type: 'SIGNIN/LOGOUT' });
+    dispatch(logout());
   }
 
   return (

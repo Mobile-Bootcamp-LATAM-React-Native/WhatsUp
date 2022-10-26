@@ -1,26 +1,35 @@
-type SignInProps = {
-  user?: {
-    name: string;
-  } | undefined,
+import { createSlice } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit'
+
+type User = {
+  name: string,
+}
+
+interface SignInState {
+  user?: User | undefined,
   isSignedIn: boolean,
 }
 
-const initialState: SignInProps = {
-  user: {
-    name: 'Gonzalo',
-  },
-  isSignedIn: true,
+const initialState: SignInState = {
+  user: undefined,
+  isSignedIn: false,
 }
 
-const reducer = (state = initialState, action): SignInProps => {
-  switch (action.type) {
-    case 'SIGNIN/LOGIN':
-      return { isSignedIn: true, user: action.payload }
-    case 'SIGNIN/LOGOUT':
-      return { isSignedIn: false, user: undefined }
-    default:
-      return { ...state }
+export const singInSlice = createSlice({
+  name: 'SignIn',
+  initialState,
+  reducers: {
+    login(state, action: PayloadAction<User>) {
+      state.isSignedIn = true;
+      state.user = action.payload;
+    },
+    logout(state) {
+      state.isSignedIn = false;
+      state.user = undefined;
+    },
   }
-}
+})
 
-export default reducer;
+export const { login, logout } = singInSlice.actions;
+
+export default singInSlice.reducer;

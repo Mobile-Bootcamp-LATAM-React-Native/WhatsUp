@@ -10,6 +10,7 @@ import ContactHeader from './components/ContactHeader';
 import MessengerHeader from './components/MessengerHeader';
 import { useAppSelector, useAppDispatch } from '@/hooks';
 import { getEncryptedItem } from '@/lib';
+import { login } from '@/features/SignIn';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -71,10 +72,12 @@ const AppNavigation = () => {
   const isSignedIn = useAppSelector(state => state.signIn.isSignedIn);
 
   const checkUser = async () => {
-    const user = await getEncryptedItem(StorageConstants.user);
+    const userItem = await getEncryptedItem(StorageConstants.user);
 
-    if (user) {
-      dispatch({ type: 'SIGNIN/LOGIN', payload: user });
+    if (userItem) {
+      const { user } = userItem as any;
+      // dispatch({ type: 'SIGNIN/LOGIN', payload: user });
+      dispatch(login(user))
     }
   }
 

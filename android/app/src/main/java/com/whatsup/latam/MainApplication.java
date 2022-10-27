@@ -14,6 +14,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import io.invertase.firebase.auth.ReactNativeFirebaseAuthPackage;
 import com.rt2zz.reactnativecontacts.ReactNativeContacts;
+import io.invertase.firebase.firestore.ReactNativeFirebaseFirestorePackage;
 
 public class MainApplication extends Application implements ReactApplication {
 

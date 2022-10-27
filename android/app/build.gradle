@@ -284,6 +284,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth'
 
     implementation project(':react-native-contacts')
+
+    // implementation project(':@react-native-firebase_firestore')
 }
 
 if (isNewArchitectureEnabled()) {

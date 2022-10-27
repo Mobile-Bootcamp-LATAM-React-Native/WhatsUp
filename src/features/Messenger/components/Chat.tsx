@@ -1,11 +1,13 @@
 import { StyleSheet, View, ScrollView } from 'react-native'
 import { useEffect } from 'react'
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import firestore from '@react-native-firebase/firestore';
 
 // import { RootStackParamList, ContactHeader } from '@/navigation';
 import type { RootStackParamList } from '@/navigation/RootStack';
 import ContactHeader from '@/navigation/components/ContactHeader';
 import { Input, Message } from '@/components';
+import { useAppSelector } from '@/hooks';
 
 type ChatProps = NativeStackScreenProps<RootStackParamList, 'Chat'>;
 
@@ -15,6 +17,18 @@ const Chat = ({
     params: contact,
   }
 }: ChatProps) => {
+  const chats = useAppSelector(state => state.messenger.chats);
+
+  // Chat in real time
+  useEffect(() => {
+    const subscriber =firestore().collection('chats').onSnapshot(documentSnapshot => {
+      console.log(documentSnapshot)
+    });
+
+    return () => subscriber();
+  }, []);
+
+  // Header
   useEffect(() => {
     navigation.setOptions({
       header: () => <ContactHeader {...contact} />
@@ -24,8 +38,9 @@ const Chat = ({
   return (
     <View style={styles.container}>
       <ScrollView style={styles.chat}>
-        <Message message="Hello" time="9:13" type="receiver"/>
-        <Message message="World" time="9:13" type="sender"/>
+        {chats.map((chat) => (
+          <Message {...chat} key={chat.time} />
+        ))}
       </ScrollView>
 
       <View style={styles.input}>

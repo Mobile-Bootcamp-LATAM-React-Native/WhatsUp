@@ -6,7 +6,7 @@ type MessageType = 'sender' | 'receiver';
 
 type MessageProps = {
   message: string;
-  time: String;
+  time: String | number;
   type: MessageType;
 }
 

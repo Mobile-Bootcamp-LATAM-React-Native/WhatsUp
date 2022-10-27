@@ -6,4 +6,4 @@ export { default as Contacts } from './components/Contacts';
 export { default as Chat } from './components/Chat';
 
 // STORE
-export { default as messengerReducer } from './Messenger.slice';
+export { default as messengerReducer, addMessage, selectAll } from './Messenger.slice';

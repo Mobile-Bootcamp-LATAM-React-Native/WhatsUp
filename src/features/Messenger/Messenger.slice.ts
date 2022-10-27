@@ -1,9 +1,16 @@
 import { Chat } from '@/models';
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction, createEntityAdapter } from '@reduxjs/toolkit';
 
 interface MessengerState {
   chats: Chat[],
 }
+
+const chatAdapter = createEntityAdapter<Chat>({
+  selectId: chat => chat.time,
+  // sortComparer: (a, b) => a.time < b.time,
+})
+
+
 
 const initialState: MessengerState = {
   chats: [{
@@ -15,12 +22,21 @@ const initialState: MessengerState = {
 
 export const messengerSlice = createSlice({
   name: 'messenger',
-  initialState,
+  initialState: chatAdapter.getInitialState(),
   reducers: {
-    addMessage(state, action: PayloadAction<Chat>) {
-      state.chats.push(action.payload);
-    }
+    // addMessage(state, action: PayloadAction<Chat>) {
+    //   // state.chats.push(action.payload);
+    // }
+    addMessage: chatAdapter.upsertOne,
   }
 })
+
+// export const { addOne: addMessage } = chatAdapter;
+
+const { selectAll } = chatAdapter.getSelectors((state: any) => state.messenger);
+
+export const selectAllChats = (state) => selectAll(state);
+
+export const { addMessage } = messengerSlice.actions;
 
 export default messengerSlice.reducer;
